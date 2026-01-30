@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 type Particle = {
   left: string;
@@ -16,6 +16,11 @@ const PARTICLE_COUNT = 35;
 
 const Hero = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
+
+  // Parallax
+  const { scrollY } = useScroll();
+  const logoY = useTransform(scrollY, [0, 400], [0, -40]);
+  const bgY = useTransform(scrollY, [0, 400], [0, 60]);
 
   useEffect(() => {
     const generatedParticles = Array.from({ length: PARTICLE_COUNT }).map(
@@ -32,15 +37,21 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-black to-gray-900 text-white py-32 px-8">
-      
-      {/* Frost Gold & Silver Particles */}
-      <div className="absolute inset-0 pointer-events-none">
+    <section className="relative overflow-hidden text-white py-32 px-8">
+
+      {/* PARALLAX BACKGROUND */}
+      <motion.div
+        style={{ y: bgY }}
+        className="absolute inset-0 bg-gradient-to-r from-black to-gray-900"
+      />
+
+      {/* GOLD & SILVER SNOW – GLOBAL */}
+      <div className="fixed inset-0 top-0 pointer-events-none z-0">
         {particles.map((p, i) => (
           <span
             key={i}
             className={`absolute top-[-15%] rounded-full blur-sm opacity-70 animate-frost-fall ${
-              p.isGold ? "bg-yellow-300" : "bg-gray-200"
+              p.isGold ? "bg-[#6816EF]" : "bg-gray-200"
             }`}
             style={{
               left: p.left,
@@ -53,12 +64,17 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* CONTENT GRID */}
+      {/* CONTENT */}
       <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
         {/* LEFT CONTENT */}
-        <div className="text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-5">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center md:text-left"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-[#6816EF] mb-5">
             India’s Trusted Gold Aggregator
           </h1>
 
@@ -67,25 +83,28 @@ const Hero = () => {
             reliable, and built for the future.
           </p>
 
-          <button className="mt-12 px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:scale-105 transition">
+          <motion.button
+            whileHover={{
+              scale: 1.06,
+              boxShadow: "0 0 25px rgba(104,22,239,0.45)",
+            }}
+            transition={{ duration: 0.3 }}
+            className="mt-12 px-8 py-3 bg-[#6816EF] text-white font-semibold rounded-xl"
+          >
             Get Started
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* RIGHT LOGO */}
         <div className="flex justify-center md:justify-end">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: [1, 1.04, 1] }}
+            style={{ y: logoY }}
+            animate={{ scale: [1, 1.04, 1] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="relative"
           >
             {/* Soft Glow */}
-            <motion.div
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="absolute inset-0 rounded-full bg-yellow-400/30 blur-3xl"
-            />
+            <div className="absolute inset-0 rounded-full bg-[#6816EF]/20 blur-3xl" />
 
             <Image
               src="/Logo/Logo.png"

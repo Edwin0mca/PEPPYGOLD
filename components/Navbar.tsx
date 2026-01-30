@@ -7,10 +7,13 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   return (
     <motion.nav
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 text-white"
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="fixed top-0 left-0 right-0 z-50
+                 flex justify-between items-center
+                 px-8 py-4
+                 bg-[#5A14D6]"
     >
       {/* LEFT */}
       <div className="flex items-center gap-3">
@@ -38,7 +41,7 @@ const Navbar = () => {
           <Link
             key={item.name}
             href={item.href}
-            className="text-gray-300 hover:text-yellow-400 transition"
+            className="text-gray-200 hover:text-yellow-400 transition-colors duration-200"
           >
             {item.name}
           </Link>
@@ -48,7 +51,8 @@ const Navbar = () => {
       {/* RIGHT CTA */}
       <Link
         href="#get-started"
-        className="border border-yellow-400 text-yellow-400 px-4 py-2 rounded-lg text-sm font-semibold
+        className="border border-yellow-400 text-yellow-400 px-4 py-2 rounded-lg
+                   text-sm font-semibold
                    hover:bg-yellow-400 hover:text-black transition"
       >
         Get Started

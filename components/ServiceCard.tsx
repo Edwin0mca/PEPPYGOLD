@@ -15,18 +15,18 @@ const ServiceCard = ({ title, description }: ServiceCardProps) => {
       transition={{ duration: 0.55, ease: "easeOut" }}
       viewport={{ once: true }}
       whileHover={{ y: -10 }}
-      className="group relative bg-white rounded-2xl p-7 shadow-md overflow-hidden border border-gray-100"
+      className="group relative bg-white rounded-2xl p-7 shadow-md overflow-hidden border border-[#6816EF]/10"
     >
-      {/* Gold gradient accent */}
-      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500" />
+      {/* Brand gradient accent */}
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#6816EF]/40 via-[#6816EF] to-[#6816EF]/40" />
 
-      {/* Soft glow on hover */}
+      {/* Soft brand glow on hover */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none">
-        <div className="absolute -top-16 -right-16 w-48 h-48 bg-yellow-400/20 rounded-full blur-3xl" />
+        <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#6816EF]/20 rounded-full blur-3xl" />
       </div>
 
       {/* Content */}
-      <h3 className="relative z-10 text-lg font-semibold text-gray-900 mb-3 group-hover:text-yellow-600 transition">
+      <h3 className="relative z-10 text-lg font-semibold text-gray-900 mb-3 group-hover:text-[#6816EF] transition">
         {title}
       </h3>
 

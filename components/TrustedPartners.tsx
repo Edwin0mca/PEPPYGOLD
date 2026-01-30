@@ -17,8 +17,8 @@ const partners = [
 
 const TrustedPartners = () => {
   return (
-    <section className="py-24 px-6 bg-gradient-to-b from-black via-gray-900 to-black">
-      <div className="max-w-6xl mx-auto text-center">
+    <section className="py-24 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+      <div className="max-w-6xl mx-auto text-center px-6">
 
         {/* Title */}
         <motion.h2
@@ -26,42 +26,45 @@ const TrustedPartners = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-yellow-400 mb-4"
+          className="text-3xl font-bold text-[#6816EF] mb-4"
         >
           Our Trusted Partners
         </motion.h2>
 
         <p className="text-gray-400 max-w-2xl mx-auto mb-14">
-          We proudly collaborate with renowned jewellers and bullion partners
-          across India to ensure trust, transparency, and quality.
+          We proudly work with reputed jewellers and bullion partners across India.
         </p>
 
-        {/* Logos Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 items-center"
-        >
-          {partners.map((partner, index) => (
-            <motion.div
-              key={partner.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-              whileHover={{ scale: 1.08 }}
-              className="flex justify-center items-center bg-white rounded-xl p-5 shadow-md grayscale hover:grayscale-0 transition"
-            >
-              <Image
-                src={partner.logo}
-                alt={partner.name}
-                width={140}
-                height={80}
-                className="object-contain"
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Carousel */}
+        <div className="relative w-full overflow-hidden">
+          <motion.div
+            className="flex gap-12 w-max"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 28,
+              ease: "linear",
+            }}
+          >
+            {[...partners, ...partners].map((partner, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -6 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="flex items-center justify-center
+                           bg-white rounded-xl p-6 shadow-md"
+              >
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={140}
+                  height={80}
+                  className="object-contain"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
 
       </div>
     </section>

@@ -6,9 +6,15 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-gray-300 pt-20 px-6">
+    <footer className="relative bg-black text-gray-300 pt-24 px-6 overflow-hidden">
+
+      {/* Soft brand glow */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#6816EF]/20 blur-3xl" />
+      </div>
+
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
@@ -16,17 +22,20 @@ const Footer = () => {
       >
         {/* BRAND */}
         <div>
-          <h2 className="text-2xl font-bold text-yellow-400 mb-3">
+          <h2 className="text-2xl font-bold text-[#6816EF] mb-3">
             Peppy Gold
           </h2>
-          <p className="text-sm mb-4">
+          <p className="text-sm mb-5 leading-relaxed">
             Offers and Schemes. <br />
-            Invest in Peppy Gold with confidence and safeguard your future.
+            Invest with confidence and safeguard your future.
           </p>
 
-          <button className="mt-3 bg-yellow-400 text-black px-5 py-2 rounded-lg text-sm font-semibold hover:scale-105 transition">
+          <Link
+            href="#get-started"
+            className="inline-block bg-[#6816EF] text-white px-6 py-2 rounded-xl text-sm font-semibold hover:scale-105 transition"
+          >
             Start Today
-          </button>
+          </Link>
         </div>
 
         {/* APP QR */}
@@ -36,27 +45,21 @@ const Footer = () => {
           </h3>
 
           <div className="flex gap-6">
-            <div className="text-center">
-              <Image
-                src="/qr/android.png"
-                alt="Android App QR"
-                width={90}
-                height={90}
-                className="bg-white p-2 rounded-md"
-              />
-              <p className="text-xs mt-2">Android</p>
-            </div>
-
-            <div className="text-center">
-              <Image
-                src="/qr/ios.png"
-                alt="iOS App QR"
-                width={90}
-                height={90}
-                className="bg-white p-2 rounded-md"
-              />
-              <p className="text-xs mt-2">iOS</p>
-            </div>
+            {[
+              { src: "/qr/android.png", label: "Android" },
+              { src: "/qr/ios.png", label: "iOS" },
+            ].map((app) => (
+              <div key={app.label} className="text-center">
+                <Image
+                  src={app.src}
+                  alt={`${app.label} App QR`}
+                  width={90}
+                  height={90}
+                  className="bg-white p-2 rounded-lg shadow-md"
+                />
+                <p className="text-xs mt-2">{app.label}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -74,7 +77,10 @@ const Footer = () => {
               "Terms of Service",
             ].map((item) => (
               <li key={item}>
-                <Link href="#" className="hover:text-yellow-400 transition">
+                <Link
+                  href="#"
+                  className="hover:text-[#6816EF] transition"
+                >
                   {item}
                 </Link>
               </li>
@@ -88,13 +94,13 @@ const Footer = () => {
             Contact & Support
           </h3>
           <p className="text-sm">📞 +91 9600898971</p>
-          <p className="text-sm mb-3">✉️ support@peppygold.com</p>
+          <p className="text-sm mb-4">✉️ support@peppygold.com</p>
 
           <div className="flex gap-3">
-            <button className="border border-yellow-400 text-yellow-400 px-3 py-1 rounded text-xs hover:bg-yellow-400 hover:text-black transition">
+            <button className="border border-[#6816EF] text-[#6816EF] px-4 py-1.5 rounded-lg text-xs hover:bg-[#6816EF] hover:text-white transition">
               WhatsApp Us
             </button>
-            <button className="border border-gray-600 px-3 py-1 rounded text-xs hover:border-yellow-400 transition">
+            <button className="border border-gray-600 px-4 py-1.5 rounded-lg text-xs hover:border-[#6816EF] transition">
               Contact Form
             </button>
           </div>
@@ -103,38 +109,26 @@ const Footer = () => {
 
       {/* ADDRESSES */}
       <div className="max-w-7xl mx-auto mt-16 border-t border-white/10 pt-10 grid gap-8 md:grid-cols-3 text-sm">
-        <div>
-          <h4 className="text-white font-semibold mb-2">
-            Head Office (Madurai)
-          </h4>
-          <p>
-            94/19, Mani Kothonar Street,<br />
-            Bypass Road, Opp. Central Warehouse,<br />
-            Madurai – 625016, Tamilnadu, India<br />
-            GSTIN: 33AAPCP5394N1ZL
-          </p>
-        </div>
+        <Address
+          title="Head Office (Madurai)"
+          content={`94/19, Mani Kothonar Street,
+Bypass Road, Opp. Central Warehouse,
+Madurai – 625016, Tamilnadu, India
+GSTIN: 33AAPCP5394N1ZL`}
+        />
 
-        <div>
-          <h4 className="text-white font-semibold mb-2">
-            Corporate Office (Chennai)
-          </h4>
-          <p>
-            No. 56, Radhakrishnan Salai,<br />
-            Palaniappa Nagar, Valasaravakkam,<br />
-            Chennai – 600087, Tamilnadu, India
-          </p>
-        </div>
+        <Address
+          title="Corporate Office (Chennai)"
+          content={`No. 56, Radhakrishnan Salai,
+Palaniappa Nagar, Valasaravakkam,
+Chennai – 600087, Tamilnadu, India`}
+        />
 
-        <div>
-          <h4 className="text-white font-semibold mb-2">
-            Global Office (USA)
-          </h4>
-          <p>
-            15901 Rolater Rd, Suite #402,<br />
-            Frisco, TX 75035, USA
-          </p>
-        </div>
+        <Address
+          title="Global Office (USA)"
+          content={`15901 Rolater Rd, Suite #402,
+Frisco, TX 75035, USA`}
+        />
       </div>
 
       {/* COPYRIGHT */}
@@ -144,5 +138,12 @@ const Footer = () => {
     </footer>
   );
 };
+
+const Address = ({ title, content }: { title: string; content: string }) => (
+  <div>
+    <h4 className="text-white font-semibold mb-2">{title}</h4>
+    <p className="whitespace-pre-line">{content}</p>
+  </div>
+);
 
 export default Footer;

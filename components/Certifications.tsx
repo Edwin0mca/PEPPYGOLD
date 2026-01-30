@@ -7,13 +7,13 @@ const Certifications = () => {
   return (
     <section className="relative overflow-hidden py-28 px-6">
 
-      {/* Soft Gold Background Accents */}
+      {/* Soft Brand Background Accents */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-80 h-80 bg-yellow-400/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-300/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-80 h-80 bg-[#6816EF]/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#6816EF]/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-6xl mx-auto bg-gradient-to-br from-yellow-50 via-white to-yellow-100 rounded-3xl p-10 md:p-16 shadow-xl">
+      <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#6816EF]/5 via-white to-[#6816EF]/10 rounded-3xl p-10 md:p-16 shadow-xl">
 
         {/* Title */}
         <motion.h2
@@ -21,7 +21,7 @@ const Certifications = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center text-yellow-600 mb-16"
+          className="text-3xl font-bold text-center text-[#6816EF] mb-16"
         >
           Our Certifications & Recognitions
         </motion.h2>
@@ -60,7 +60,7 @@ const Certifications = () => {
         </motion.div>
 
         {/* Divider */}
-        <div className="my-20 border-t border-yellow-200" />
+        <div className="my-20 border-t border-[#6816EF]/20" />
 
         {/* DUNS */}
         <motion.div
@@ -97,7 +97,7 @@ const Certifications = () => {
 
           {/* QR */}
           <div className="flex justify-center">
-            <div className="bg-white p-3 rounded-xl border shadow-sm">
+            <div className="bg-white p-3 rounded-xl border border-[#6816EF]/20 shadow-sm">
               <Image
                 src="/certifications/PEPPY-GOLD-TECHNOLOGIES-PVT-LTD-QR-Code.jpg"
                 alt="DUNS QR Code"
