@@ -5,41 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const OUNCE_TO_GRAM = 31.1035;
-
 const Navbar = () => {
-  const [gold, setGold] = useState<number | null>(null);
-  const [silver, setSilver] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
-
-  /* FETCH GOLD & SILVER PRICES */
-  useEffect(() => {
-    const fetchPrices = async () => {
-      try {
-        const headers = {
-          "x-access-token": process.env.NEXT_PUBLIC_GOLD_API_KEY!,
-          "Content-Type": "application/json",
-        };
-
-        const [goldRes, silverRes] = await Promise.all([
-          fetch("https://www.goldapi.io/api/XAU/INR", { headers }),
-          fetch("https://www.goldapi.io/api/XAG/INR", { headers }),
-        ]);
-
-        const goldData = await goldRes.json();
-        const silverData = await silverRes.json();
-
-        setGold(Math.round(goldData.price / OUNCE_TO_GRAM));
-        setSilver(Math.round(silverData.price / OUNCE_TO_GRAM));
-      } catch (err) {
-        console.error("Navbar price fetch failed", err);
-      }
-    };
-
-    fetchPrices();
-    const interval = setInterval(fetchPrices, 60000);
-    return () => clearInterval(interval);
-  }, []);
 
   /* SCROLL COLOR CHANGE */
   useEffect(() => {
@@ -73,7 +40,7 @@ const Navbar = () => {
           </span>
         </div>
 
-        {/* CENTER: NAV LINKS */}
+        {/* CENTER: LINKS */}
         <div className="hidden lg:flex gap-6 text-sm font-medium text-white">
           <Link href="#home" className="hover:text-[#6816EF] transition">
             Home
@@ -89,17 +56,17 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* RIGHT: PRICES + CTA */}
+        {/* RIGHT: LOADING PRICES + CTA */}
         <div className="flex items-center gap-5">
 
-          {/* GOLD & SILVER */}
+          {/* Loading State */}
           <div className="hidden md:flex items-center gap-4 px-4 py-2 rounded-lg bg-[#1a1a1a] border border-white/10 text-sm font-medium">
-            <span className="font-semibold bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 bg-clip-text text-transparent">
-              GOLD 🟡 {gold ? `₹${gold}/gm` : "--"}
+            <span className="text-yellow-400 animate-pulse">
+              GOLD 🟡 Loading…
             </span>
 
-            <span className="font-semibold bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 bg-clip-text text-transparent">
-              SILVER ⚪ {silver ? `₹${silver}/gm` : "--"}
+            <span className="text-gray-300 animate-pulse">
+              SILVER ⚪ Loading…
             </span>
           </div>
 
