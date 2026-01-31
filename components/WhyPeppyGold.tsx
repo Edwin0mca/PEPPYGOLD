@@ -32,6 +32,8 @@ const features = [
 
 const WhyPeppyGold = () => {
   return (
+    <section id="why-peppy-gold" className="scroll-mt-24">
+
     <section className="relative py-28 px-6 overflow-hidden bg-gradient-to-br from-[#6816EF]/5 via-white to-[#6816EF]/10">
 
       {/* Soft Brand Wave */}
@@ -91,6 +93,7 @@ const WhyPeppyGold = () => {
         </div>
 
       </div>
+    </section>
     </section>
   );
 };

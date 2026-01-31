@@ -12,7 +12,7 @@ type Particle = {
   isGold: boolean;
 };
 
-const PARTICLE_COUNT = 35;
+const PARTICLE_COUNT = 70;
 
 const Hero = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
@@ -29,7 +29,7 @@ const Hero = () => {
         size: `${Math.random() * 8 + 4}px`,
         duration: `${Math.random() * 10 + 12}s`,
         delay: `${Math.random() * 6}s`,
-        isGold: Math.random() > 0.5,
+        isGold: Math.random() > 0.35,
       })
     );
 
@@ -37,15 +37,17 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden text-white py-32 px-8">
-
+    <section
+      id="home"
+      className="relative overflow-hidden text-white py-32 px-8 scroll-mt-24"
+    >
       {/* PARALLAX BACKGROUND */}
       <motion.div
         style={{ y: bgY }}
         className="absolute inset-0 bg-gradient-to-r from-black to-gray-900"
       />
 
-      {/* GOLD & SILVER SNOW – GLOBAL */}
+      {/* GOLD & SILVER FALL – HERO ONLY */}
       <div className="fixed inset-0 top-0 pointer-events-none z-0">
         {particles.map((p, i) => (
           <span
@@ -64,26 +66,59 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* CONTENT */}
+      {/* CONTENT GRID */}
       <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-
-        {/* LEFT CONTENT */}
+        
+        {/* LEFT CONTENT – STAGGER */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.18 },
+            },
+          }}
+          initial="hidden"
+          animate="visible"
           className="text-center md:text-left"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-[#6816EF] mb-5">
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, y: 26 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6, ease: "easeOut" },
+              },
+            }}
+            className="text-4xl md:text-5xl font-bold text-[#6816EF] mb-5"
+          >
             India’s Trusted Gold Aggregator
-          </h1>
+          </motion.h1>
 
-          <p className="max-w-2xl mx-auto md:mx-0 text-lg text-gray-300">
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 22 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6, ease: "easeOut" },
+              },
+            }}
+            className="max-w-2xl mx-auto md:mx-0 text-lg text-gray-300"
+          >
             Buy, sell, and manage gold securely with PeppyGold — transparent,
             reliable, and built for the future.
-          </p>
+          </motion.p>
 
           <motion.button
+            variants={{
+              hidden: { opacity: 0, y: 18 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.5, ease: "easeOut" },
+              },
+            }}
             whileHover={{
               scale: 1.06,
               boxShadow: "0 0 25px rgba(104,22,239,0.45)",
@@ -103,9 +138,7 @@ const Hero = () => {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="relative"
           >
-            {/* Soft Glow */}
             <div className="absolute inset-0 rounded-full bg-[#6816EF]/20 blur-3xl" />
-
             <Image
               src="/Logo/Logo.png"
               alt="Peppy Gold Logo"
@@ -116,7 +149,6 @@ const Hero = () => {
             />
           </motion.div>
         </div>
-
       </div>
     </section>
   );

@@ -22,40 +22,30 @@ const userTestimonials: Testimonial[] = [
   },
   {
     message:
-      "Good application for investing in jewellery. Provides detailed comparison and easier subscription to saving schemes from various jewellers.",
+      "Good application for investing in jewellery. Provides detailed comparison and easier subscription to saving schemes.",
     name: "Tamilselvan M",
-  },
-  {
-    message:
-      "This app really good and easy to use. Lots of offers and rewards. Highly recommended for saving gold.",
-    name: "Emmanlal Emman",
   },
   {
     message:
       "Very user-friendly app! Makes gold investment simple, secure, and convenient.",
     name: "Mani Kandan",
   },
-  {
-    message:
-      "Investing in gold is a helpful way to save money. This app helped me build a savings habit.",
-    name: "Ragul",
-  },
 ];
 
 const partnerTestimonials: Testimonial[] = [
   {
     message:
-      "An excellent platform for jewellers to trade profitably without investing a single penny. Truly a game-changer for the industry.",
+      "An excellent platform for jewellers to trade profitably without investing a single penny. Truly a game-changer.",
     name: "AGS Thangamaaligai",
   },
   {
     message:
-      "A great opportunity for jewellers to amplify their revenue. Peppy Gold also serves as a vibrant marketplace for customers.",
+      "A great opportunity for jewellers to amplify revenue and reach more customers.",
     name: "Kamalam Jewellery",
   },
   {
     message:
-      "An absolutely fantastic platform, perfectly suited for the new generation of jewellers and investors!",
+      "Perfectly suited for the new generation of jewellers and investors.",
     name: "Garudaa Gold Palace Pvt Ltd",
   },
 ];
@@ -66,12 +56,11 @@ const Slider = ({ data }: { data: Testimonial[] }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % data.length);
-    }, 5000);
+    }, 6500); // slower & calmer
     return () => clearInterval(timer);
   }, [data.length]);
 
-  const prev = () =>
-    setIndex((index - 1 + data.length) % data.length);
+  const prev = () => setIndex((index - 1 + data.length) % data.length);
   const next = () => setIndex((index + 1) % data.length);
 
   return (
@@ -79,13 +68,13 @@ const Slider = ({ data }: { data: Testimonial[] }) => {
       <AnimatePresence mode="wait">
         <motion.div
           key={index}
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -40 }}
-          transition={{ duration: 0.4 }}
-          className="bg-white rounded-2xl shadow-lg p-8 text-center"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -18 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="bg-white/80 backdrop-blur border border-[#6816EF]/10 rounded-2xl p-8 text-center shadow-md"
         >
-          <Quote className="mx-auto text-yellow-400 mb-4" />
+          <Quote className="mx-auto text-[#6816EF] mb-4" />
           <p className="text-gray-700 leading-relaxed mb-6">
             “{data[index].message}”
           </p>
@@ -98,14 +87,14 @@ const Slider = ({ data }: { data: Testimonial[] }) => {
       {/* Controls */}
       <button
         onClick={prev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:scale-105 transition"
+        className="absolute -left-6 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:scale-105 transition"
       >
         <ChevronLeft />
       </button>
 
       <button
         onClick={next}
-        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:scale-105 transition"
+        className="absolute -right-6 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:scale-105 transition"
       >
         <ChevronRight />
       </button>
@@ -115,22 +104,34 @@ const Slider = ({ data }: { data: Testimonial[] }) => {
 
 const Testimonials = () => {
   return (
-    <section className="py-28 px-6 bg-gradient-to-b from-yellow-50 via-white to-yellow-100">
-      <div className="max-w-6xl mx-auto space-y-24">
+    <section className="relative py-28 px-6 bg-gradient-to-b from-[#6816EF]/5 via-white to-[#6816EF]/5">
+      <div className="max-w-6xl mx-auto space-y-28">
 
-        {/* Users */}
+        {/* USERS */}
         <div>
-          <h2 className="text-3xl font-bold text-center text-yellow-600 mb-14">
-            Loved by Users 
-          </h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-center text-[#6816EF] mb-14"
+          >
+            Loved by Users
+          </motion.h2>
           <Slider data={userTestimonials} />
         </div>
 
-        {/* Partners */}
+        {/* PARTNERS */}
         <div>
-          <h2 className="text-3xl font-bold text-center text-yellow-600 mb-14">
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-center text-[#6816EF] mb-14"
+          >
             What Our Partners Say About Peppy Gold
-          </h2>
+          </motion.h2>
           <Slider data={partnerTestimonials} />
         </div>
 

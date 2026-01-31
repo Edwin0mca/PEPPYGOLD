@@ -18,31 +18,31 @@ const benefits = [
 const UserBenefits = () => {
   return (
     <section className="relative overflow-hidden py-28 px-6">
-      
-      {/* Animated Background Blobs */}
+
+      {/* Soft Animated Brand Blobs (Slower) */}
       <div className="absolute inset-0 -z-10">
         <motion.div
-          animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
-          transition={{ duration: 12, repeat: Infinity }}
-          className="absolute top-20 left-10 w-72 h-72 bg-yellow-400/20 rounded-full blur-3xl"
+          animate={{ y: [0, 20, 0], x: [0, 12, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-24 left-12 w-80 h-80 bg-[#6816EF]/15 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{ y: [0, -30, 0], x: [0, -20, 0] }}
-          transition={{ duration: 14, repeat: Infinity }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-300/20 rounded-full blur-3xl"
+          animate={{ y: [0, -20, 0], x: [0, -12, 0] }}
+          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-24 right-12 w-96 h-96 bg-[#6816EF]/10 rounded-full blur-3xl"
         />
       </div>
 
-      {/* Content */}
-      <div className="max-w-6xl mx-auto bg-gradient-to-br from-yellow-50 via-white to-yellow-100 rounded-3xl p-10 md:p-16 shadow-xl">
+      {/* Content Card */}
+      <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#6816EF]/5 via-white to-[#6816EF]/10 rounded-3xl p-10 md:p-16 shadow-xl">
 
         {/* Title */}
         <motion.h2
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center text-yellow-600 mb-16"
+          className="text-3xl font-bold text-center text-[#6816EF] mb-16"
         >
           User Benefits
         </motion.h2>
@@ -52,14 +52,21 @@ const UserBenefits = () => {
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.04,
+                ease: "easeOut",
+              }}
               viewport={{ once: true }}
-              whileHover={{ y: -6 }}
-              className="flex items-start gap-3 p-5 rounded-xl bg-white/80 backdrop-blur border hover:shadow-lg transition"
+              whileHover={{ y: -4 }}
+              className="flex items-start gap-3 p-5 rounded-xl bg-white/90 backdrop-blur border border-[#6816EF]/10 hover:shadow-md transition-all"
             >
-              <CheckCircle className="text-yellow-500 mt-1" size={20} />
+              <CheckCircle
+                className="text-[#6816EF] mt-1 shrink-0"
+                size={20}
+              />
               <p className="text-gray-700 text-sm leading-relaxed">
                 {benefit}
               </p>

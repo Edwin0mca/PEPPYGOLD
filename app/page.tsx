@@ -5,7 +5,7 @@ import WhyPeppyGold from "@/components/WhyPeppyGold";
 import GoldenSteps from "@/components/GoldenSteps";
 
 import AppDownloadCTA from "@/components/AppDownloadCTA";
-import LivePrices from "@/components/LivePrices";
+
 import Certifications from "@/components/Certifications";
 
 import UserBenefits from "@/components/UserBenefits";
@@ -14,6 +14,7 @@ import Testimonials from "@/components/Testimonials";
 
 import TrustedPartners from "@/components/TrustedPartners";
 import Leadership from "@/components/Leadership";
+import BusinessConsultingPartners from "@/components/BusinessConsultingPartners";
 
 
 
@@ -34,7 +35,7 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <LivePrices gold={16800} silver={425} />
+      
 
       {/* Services Section */}
       <section className="py-16 px-8 grid md:grid-cols-3 gap-8 bg-gray-100">
@@ -60,6 +61,7 @@ export default function Home() {
       <Testimonials />
       <TrustedPartners />
       <Leadership/>
+      <BusinessConsultingPartners/>
       <AppDownloadCTA />
 
       <Footer />
