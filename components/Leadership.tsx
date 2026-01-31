@@ -17,11 +17,17 @@ const advisoryBoard = [
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1], // ✅ FIXED
+    },
   },
 };
 
@@ -48,7 +54,7 @@ const Leadership = () => {
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
             className="text-3xl font-bold text-center text-[#6816EF] mb-16"
           >
@@ -70,10 +76,8 @@ const Leadership = () => {
                            border border-[#6816EF]/15
                            overflow-hidden transition"
               >
-                {/* TOP ACCENT LINE */}
                 <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-[#6816EF] via-[#9b6cff] to-[#6816EF]" />
 
-                {/* HOVER GLOW */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
                   <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#6816EF]/20 rounded-full blur-3xl" />
                 </div>
@@ -94,7 +98,7 @@ const Leadership = () => {
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
             className="text-3xl font-bold text-center text-[#6816EF] mb-16"
           >
